@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VSR - Hệ thống AI nhận diện biển báo và hỗ trợ lái xe thông minh">
+    <title>VSR - Hệ thống hỗ trợ lái xe thông minh</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-light">
+
+<div class="sticky-navbar-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-pill container shadow-lg py-2 px-4">
+        <div class="container-fluid">
+            <a class="navbar-brand vsr-logo-nav me-5" href="/index">VSR</a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-2 gap-lg-5">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom active" href="/index">TRANG CHỦ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="/vsr">VSR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="/contact">LIÊN HỆ</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="d-none d-lg-block ms-5">
+                <a href="/login" class="user-btn-pill shadow-sm" title="Đăng nhập tài khoản">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<header class="position-relative overflow-hidden d-flex align-items-center justify-content-center bg-dark" style="height: 600px;">
+    <div class="position-absolute top-0 start-0 w-100 h-100"
+         style="background: url('/images/hero-bg.jpg') center/cover; opacity: 0.3;"></div>
+
+    <div class="position-relative text-center text-white z-3">
+        <h1 class="hero-title">VSR</h1>
+
+        <div class="glass-badge px-4 py-2 rounded-pill d-inline-block mt-3 shadow-lg">
+            <p class="mb-0 fw-medium d-flex align-items-center gap-2 text-white">
+                <span class="d-inline-block bg-info rounded-circle animate-pulse-dot" style="width: 12px; height: 12px;"></span>
+                Camera nhận diện biển báo — Hỗ trợ lái xe thông minh
+            </p>
+        </div>
+
+        <div class="mt-5">
+            <a href="#feature-section" class="btn btn-outline-light rounded-circle animate-bounce" style="width: 40px; height: 40px;">
+                <i class="fa-solid fa-chevron-down"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<section id="feature-section" class="container py-5 my-5">
+    <div class="row align-items-center g-5">
+        <div class="col-lg-6 order-2 order-lg-1">
+            <h2 class="h3 fw-bold text-dark mb-5 border-start border-primary border-4 ps-4 text-uppercase">
+                Dẫn đường và cảnh báo giao thông
+            </h2>
+            <ul class="list-unstyled fs-5 text-secondary">
+                <li class="mb-4 d-flex align-items-center"><i class="fa-solid fa-paper-plane text-primary me-3"></i> Dẫn đường thông minh</li>
+                <li class="mb-4 d-flex align-items-center"><i class="fa-solid fa-triangle-exclamation text-primary me-3"></i> Cảnh báo vượt quá tốc độ</li>
+                <li class="mb-4 d-flex align-items-center"><i class="fa-solid fa-camera text-primary me-3"></i> Cảnh báo camera phạt nguội</li>
+                <li class="mb-4 d-flex align-items-center"><i class="fa-solid fa-ban text-primary me-3"></i> Cảnh báo đường cấm vượt</li>
+                <li class="mt-5">
+                    <a href="/vsr" class="btn btn-info text-dark fw-bold px-5 py-3 rounded-pill shadow-lg hover-scale">
+                        Khám phá ngay <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-lg-6 order-1 order-lg-2">
+            <div class="angled-mockup-container mx-auto">
+                <div class="angled-card card-back shadow-lg">
+                    <img src="/images/image_map.png" alt="Bản đồ dẫn đường VSR" class="img-fluid">
+                </div>
+                <div class="angled-card card-front shadow-xl">
+                    <img src="/images/image_ai.png" alt="Công nghệ phân tích AI" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="vsr-intro" class="py-5 bg-white">
+    <div class="container py-lg-5">
+        <div class="text-center mb-5">
+            <h3 class="vsr-logo-main display-3 mb-2">VSR</h3>
+
+            <div class="intro-title-wrapper">
+                <p class="text-uppercase fw-bold text-secondary ls-wide mb-0">
+                    Ứng dụng trợ lý giao thông – Nâng tầm trải nghiệm lái xe
+                </p>
+                <div class="vsr-line-divider mx-auto mt-2"></div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <p class="fs-5 text-dark-soft mb-5 leading-relaxed text-center text-lg-start">
+                    <strong>VSR</strong> là trợ lý giao thông cho ô tô dành riêng cho tài xế, tích hợp nhiều tính năng tối ưu và luôn cập nhật thông tin nhanh chóng, mang đến cho bạn trải nghiệm hoàn hảo.
+                </p>
+
+                <div class="vsr-detailed-features">
+                    <div class="d-flex align-items-start mb-4 feature-item">
+                        <span class="vsr-bullet-icon me-3">
+                            <i class="fa-solid fa-circle-chevron-right"></i>
+                        </span>
+                        <p class="fs-5 text-secondary mb-0">
+                            Dễ dàng tìm kiếm các địa điểm xung quanh, đồng thời bạn có thể chia sẻ vị trí và đi theo nhóm.
+                        </p>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-4 feature-item">
+                        <span class="vsr-bullet-icon me-3">
+                            <i class="fa-solid fa-circle-chevron-right"></i>
+                        </span>
+                        <p class="fs-5 text-secondary mb-0">
+                            Hiển thị hình ảnh camera giao thông trên các tuyến đường và tình trạng giao thông tại thời gian thực.
+                        </p>
+                    </div>
+
+                    <div class="d-flex align-items-start feature-item">
+                        <span class="vsr-bullet-icon me-3">
+                            <i class="fa-solid fa-circle-chevron-right"></i>
+                        </span>
+                        <p class="fs-5 text-secondary mb-0">
+                            Trang bị bản đồ chi tiết, cảnh báo giao thông bằng giọng nói.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="vsr-safety" class="py-5">
+    <div class="container py-4">
+        <div class="safety-box-wrapper p-5">
+            <h2 class="text-center mb-5 safety-title text-uppercase fw-bold">
+                VSR sẽ giúp bạn hạn chế được tất cả các lỗi khi lái xe
+            </h2>
+
+            <div class="row g-4 text-center align-items-center">
+                <div class="col-md-4">
+                    <div class="safety-card mb-3">
+                        <img src="/images/Danduong.png" alt="Dẫn đường" class="img-fluid">
+                    </div>
+                    <p class="fw-bold text-dark-soft">Ứng dụng dẫn đường</p>
+                </div>
+
+                <div class="col-md-4 border-start border-end border-white-50 px-lg-5">
+                    <div class="d-flex justify-content-center gap-2 mb-3">
+                        <div class="safety-card">
+                            <img src="/images/camretrai.png" alt="Cấm rẽ trái" class="img-fluid">
+                        </div>
+                        <div class="safety-card">
+                            <img src="/images/camrephai.png" alt="Cấm rẽ phải" class="img-fluid">
+                        </div>
+                    </div>
+                    <p class="fw-bold text-dark-soft">Nhắc nhở các loại biển báo cấm</p>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="safety-card mb-3">
+                        <img src="/images/Tocdogioihan.png" alt="Cảnh báo tốc độ" class="img-fluid">
+                    </div>
+                    <p class="fw-bold text-dark-soft">Cảnh báo tốc độ giới hạn</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="vsr-lane-guidance" class="py-5 position-relative text-white overflow-hidden">
+    <div class="lane-bg-overlay"></div>
+
+    <div class="container py-lg-5 position-relative z-3">
+        <div class="text-center mb-5">
+            <h2 class="lane-main-title text-uppercase fw-bold mb-4">
+                Hiển thị hướng dẫn làn đường <br> đi đúng theo lộ trình đã lập
+            </h2>
+        </div>
+
+        <div class="row align-items-center g-5">
+            <div class="col-lg-4 order-2 order-lg-1">
+                <div class="tech-bracket-box box-left shadow-lg">
+                    <p class="mb-0 fs-5">
+                        <strong class="text-accent">Cảnh báo:</strong> <br>
+                        VSR giúp phát hiện biển báo giúp tài xế yên tâm lái xe
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 order-1 order-lg-2">
+                <div class="phone-display-wrapper text-center">
+                    <img src="/images/anhvrs.png" alt="VSR Lane Interface" class="img-fluid rounded-4 shadow-cyan-glow">
+                </div>
+            </div>
+
+            <div class="col-lg-4 order-3 order-lg-3">
+                <div class="tech-bracket-box box-right shadow-lg">
+                    <p class="mb-0 fs-5">
+                        Hiển thị hình ảnh thực tế ở các giao lộ phức tạp để người lái dễ dàng hình dung và chủ động hướng di chuyển.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="vsr-footer pt-5 pb-4">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-6">
+                <h4 class="footer-heading">Về chúng tôi</h4>
+                <div class="footer-line"></div>
+                <p class="footer-text mt-4 fs-5">
+                    Ứng dụng trợ lý giao thông <br>
+                    <span class="text-vsr-cyan fw-bold">Nâng tầm trải nghiệm lái xe</span>
+                </p>
+                <div class="d-flex gap-3 mt-4">
+                    <a href="#" class="vsr-icon-circle shadow-sm">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="tel:0333947524" class="vsr-icon-circle shadow-sm">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h4 class="footer-heading">Đột phá công nghệ</h4>
+                <div class="footer-line"></div>
+                <ul class="list-unstyled footer-link-list mt-4">
+                    <li><a href="/index">Trang chủ</a></li>
+                    <li><a href="/vsr">Camera hành trình</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar mt-5 pt-4 border-top d-flex justify-content-between align-items-center">
+            <p class="mb-0 small text-secondary">
+                @ Thiết kế bởi <strong>VSR team</strong> - <strong>Nguyễn Văn Phước</strong>
+            </p>
+            <a href="#" class="vsr-icon-circle shadow-sm" title="Lên đầu trang">
+                <i class="fa-solid fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -699,98 +699,89 @@ body.auth-screen {
 
 
 
-
-
-
-:root {
-    --vsr-dark: #0f172a;
-    --vsr-card: #1e293b;
-    --vsr-cyan: #22d3ee;
-    --vsr-text: #f1f5f9;
-}
-
-.vsr-pro-dashboard {
-    background: var(--vsr-dark);
+.vsr-dashboard-page {
+    background-color: #0f172a;
     min-height: 100vh;
-    color: var(--vsr-text);
-    font-family: 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
 }
 
-/* HUD Top Bar */
-.vsr-hud-top {
-    background: rgba(30, 41, 59, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(34, 211, 238, 0.2);
-}
 
-.rec-dot {
-    height: 10px; width: 10px;
-    background: #ef4444;
-    border-radius: 50%;
-    display: inline-block;
-    animation: blink 1s infinite;
-}
-
-/* Monitor Area */
-.vsr-monitor-wrapper {
-    background: #000;
-    border-radius: 24px;
+.vsr-dash-main-container {
+    width: 95%;
+    max-width: 1400px;
+    background: #1e293b;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     overflow: hidden;
-    aspect-ratio: 16/9;
 }
 
-.vsr-camera-stream {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: 0.8; /* Giảm chói cho camera */
-}
 
-/* AI Target Box */
-.vsr-ai-target {
-    position: absolute;
-    border: 2px solid var(--vsr-cyan);
-    box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
-    border-radius: 8px;
-    z-index: 10;
-}
-
-.target-info {
-    position: absolute;
-    top: -45px; left: -2px;
+.vsr-dash-card {
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
     display: flex;
     flex-direction: column;
+    min-height: 520px;
 }
 
-.confidence {
-    font-size: 10px;
-    color: var(--vsr-cyan);
-    background: rgba(15, 23, 42, 0.8);
-    padding: 0 4px;
+
+.vsr-dash-content-box {
+    flex-grow: 1;
+    background: #000;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Speedometer & Limit */
-.vsr-speed-group .speed-number {
-    font-size: 4rem;
-    font-weight: 900;
-    line-height: 1;
-    color: var(--vsr-cyan);
-    text-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+.vsr-dash-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
 }
 
-.vsr-limit-circle {
-    width: 70px; height: 70px;
-    border: 8px solid #dc2626;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center; justify-content: center;
-    color: black; font-weight: 900; font-size: 1.5rem;
+
+.vsr-dash-header { background: rgba(30, 41, 59, 0.5); }
+.vsr-dash-card-label { background: rgba(30, 41, 59, 0.8); color: #94a3b8; font-size: 11px; font-weight: bold; }
+
+
+.vsr-dash-ai-target {
+    position: absolute;
+    border: 2px solid #38bdf8;
+    background: rgba(56, 189, 248, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    z-index: 5;
 }
 
-/* Navigation Card */
-.vsr-nav-card {
-    background: var(--vsr-card);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+.ai-label {
+    position: absolute;
+    top: -25px; left: -2px;
+    background: #38bdf8; color: #000;
+    padding: 2px 8px; font-size: 10px; font-weight: 800;
+    border-radius: 4px 4px 0 0;
 }
 
-@keyframes blink { 50% { opacity: 0; } }
+.speed-val { font-size: 2.5rem; font-weight: 900; color: #38bdf8; }
+
+
+.vsr-dash-pulse {
+    width: 10px; height: 10px; background: #38bdf8;
+    border-radius: 50%; box-shadow: 0 0 10px #38bdf8;
+    animation: dash-blink 2s infinite;
+}
+
+@keyframes dash-blink { 50% { opacity: 0.3; } }
+
+
+
+
+
+
+
+

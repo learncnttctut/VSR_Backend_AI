@@ -13,32 +13,25 @@ public class WebController {
         return "index";
     }
 
-
     @GetMapping("/login")
     public String showLoginPage() {
         return "login";
     }
-
 
     @GetMapping("/register")
     public String showRegisterPage() {
         return "register";
     }
 
-
     @GetMapping("/contact")
     public String showContactPage() {
         return "contact";
     }
 
-
     @GetMapping("/vsr")
     public String showVsrPage() {
         return "vsr";
     }
-
-
-
 
     @PostMapping("/register")
     public String handleRegister() {
@@ -46,14 +39,12 @@ public class WebController {
         System.out.println("VSR System: Đã nhận yêu cầu đăng ký tài khoản mới!");
         return "redirect:/login";
     }
-
-
+    
     @PostMapping("/login")
     public String handleLogin() {
         System.out.println("VSR System: Đang thực hiện xác thực người dùng...");
         return "redirect:/";
     }
-
 
     @PostMapping("/contact")
     public String handleContact() {

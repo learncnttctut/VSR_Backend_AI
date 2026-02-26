@@ -79,10 +79,10 @@
                             <span><i class="fa-solid fa-camera me-2"></i>GIÁM SÁT AI</span>
                             <span class="small text-info">30.0 FPS</span>
                         </div>
-                        <div class="vsr-dash-content-box position-relative">
-                            <div class="vsr-dash-ai-target" style="top: 25%; right: 20%; width: 100px; height: 100px;">
-                                <div class="ai-label">BIỂN CẤM</div>
-                            </div>
+                        <div class="vsr-dash-content-box position-relative"
+                             style="width:640px; height:480px;">
+                            <img src="http://localhost:5000/video_feed" style="width:100%; height:100%; object-fit:cover;" />
+                            <img id="signImg" style="position:absolute; top:20px; right:20px; width:120px; background:white; padding:5px; border-radius:10px;" />
                         </div>
                     </div>
                 </div>
@@ -97,5 +97,26 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const signImg = document.getElementById("signImg");
+
+    setInterval(() => {
+        fetch("/api/current-sign")   // sửa ở đây
+            .then(res => {
+                if (!res.ok) throw new Error("Network error");
+                return res.text();
+            })
+            .then(text => {
+                if (!text) return null;
+                return JSON.parse(text);
+            })
+            .then(data => {
+                if (!data || !data.image) return;
+
+                signImg.src = data.image;
+            })
+            .catch(err => console.log("No sign detected yet"));
+    }, 1000);
+</script>
 </body>
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Biển Báo Giao Thông</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+        }
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Thêm Biển Báo</h2>
+
+    <form action="/save" method="post" enctype="multipart/form-data">
+
+        <label for="signName">Tên biển báo</label>
+        <input type="text" id="signName" name="signName" required>
+
+        <label for="signCode">Mã biển báo</label>
+        <input type="text" id="signCode" name="signCode" required>
+
+        <label for="description">Mô tả</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+
+        <label for="image">Hình ảnh</label>
+        <input type="file" id="image" name="image" accept="image/*">
+
+        <button type="submit">Lưu</button>
+    </form>
+</div>
+
+</body>
+</html>

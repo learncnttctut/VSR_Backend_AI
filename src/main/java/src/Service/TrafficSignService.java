@@ -33,7 +33,7 @@ public class TrafficSignService {
         trafficSignRepos.save(trafficSign);
     }
 
-public void handle(Integer signId) {
+    public void handle(Integer signId) {
     latestSign = trafficSignRepos.findById(signId).orElse(null);
 }
 

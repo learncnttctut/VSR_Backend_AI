@@ -1,11 +1,19 @@
-package demo;
+package src.Controller;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import src.Service.TrafficSignService;
+
+import java.io.IOException;
 
 @Controller
+@CrossOrigin("*")
+@RequiredArgsConstructor
 public class WebController {
+    private final TrafficSignService trafficSignService;
 
 
     @GetMapping({"/", "/index"})
@@ -50,5 +58,24 @@ public class WebController {
     public String handleContact() {
         System.out.println("VSR System: Đã nhận thông tin liên hệ từ khách hàng!");
         return "redirect:/contact";
+    }
+
+
+    @PostMapping("/save")
+    public String saveTrafficSign(
+            @RequestParam String signName,
+            @RequestParam String signCode,
+            @RequestParam String description,
+            @RequestParam("image") MultipartFile image
+    ) throws IOException {
+
+        trafficSignService.saveTrafficSign(signName, signCode, description, image);
+
+        return "redirect:/addData";
+    }
+
+    @GetMapping("/addData")
+    public String showForm() {
+        return "addData";
     }
 }

@@ -699,89 +699,194 @@ body.auth-screen {
 
 
 
-.vsr-dashboard-page {
+/*.vsr-dashboard-page {*/
+/*    background-color: #0f172a;*/
+/*    min-height: 100vh;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    padding-top: 80px;*/
+/*    padding-bottom: 20px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+
+/*.vsr-dash-main-container {*/
+/*    width: 95%;*/
+/*    max-width: 1400px;*/
+/*    background: #1e293b;*/
+/*    border-radius: 30px;*/
+/*    border: 1px solid rgba(255, 255, 255, 0.05);*/
+/*    overflow: hidden;*/
+/*}*/
+
+
+/*.vsr-dash-card {*/
+/*    background: rgba(15, 23, 42, 0.5);*/
+/*    border-radius: 20px;*/
+/*    border: 1px solid rgba(255, 255, 255, 0.03);*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    min-height: 520px;*/
+/*}*/
+
+
+/*.vsr-dash-content-box {*/
+/*    flex-grow: 1;*/
+/*    background: #000;*/
+/*    position: relative;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*.vsr-dash-media {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    object-fit: cover;*/
+/*    opacity: 0.85;*/
+/*}*/
+
+
+/*.vsr-dash-header { background: rgba(30, 41, 59, 0.5); }*/
+/*.vsr-dash-card-label { background: rgba(30, 41, 59, 0.8); color: #94a3b8; font-size: 11px; font-weight: bold; }*/
+
+
+/*.vsr-dash-ai-target {*/
+/*    position: absolute;*/
+/*    border: 2px solid #38bdf8;*/
+/*    background: rgba(56, 189, 248, 0.05);*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);*/
+/*    z-index: 5;*/
+/*}*/
+
+/*.ai-label {*/
+/*    position: absolute;*/
+/*    top: -25px; left: -2px;*/
+/*    background: #38bdf8; color: #000;*/
+/*    padding: 2px 8px; font-size: 10px; font-weight: 800;*/
+/*    border-radius: 4px 4px 0 0;*/
+/*}*/
+
+/*.speed-val { font-size: 2.5rem; font-weight: 900; color: #38bdf8; }*/
+
+
+/*.vsr-dash-pulse {*/
+/*    width: 10px; height: 10px; background: #38bdf8;*/
+/*    border-radius: 50%; box-shadow: 0 0 10px #38bdf8;*/
+/*    animation: dash-blink 2s infinite;*/
+/*}*/
+
+/*@keyframes dash-blink { 50% { opacity: 0.3; } }*/
+
+
+/* =========================================================
+   GIAO DIỆN VSR - CHUẨN MÀN HÌNH ĐIỀU KHIỂN (KHÔNG BỊ BẸP)
+   ========================================================= */
+
+/* 1. TẠO NỀN TỐI TOÀN TRANG (Tuyệt đối không ảnh hưởng trang khác) */
+.vsr-dashboard-page::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
     background-color: #0f172a;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 80px;
-    padding-bottom: 20px;
-    box-sizing: border-box;
+    z-index: -999;
 }
 
-
-.vsr-dash-main-container {
-    width: 95%;
-    max-width: 1400px;
-    background: #1e293b;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+/* 2. KHUNG BAO NGOÀI: Cố định tuyệt đối, sát viền 4 góc */
+.vsr-dashboard-page {
+    position: fixed;
+    top: 85px; /* Cách thanh Navbar 85px (Có thể tăng/giảm số này để vừa khít) */
+    left: 15px; /* Sát mép trái */
+    right: 15px; /* Sát mép phải */
+    bottom: 15px; /* Kéo sát đáy màn hình */
+    z-index: 10;
+    padding: 0;
+    margin: 0;
     overflow: hidden;
 }
 
+/* 3. BẢNG ĐIỀU KHIỂN: Lấp đầy 100% khung cố định bên ngoài */
+.vsr-dash-main-container {
+    width: 100%;
+    height: 100%; /* Bung hết cỡ xuống đáy */
+    background: #1e293b;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
 
+/* 4. CHUỖI FLEXBOX "DÂY CHUYỀN" ÉP CHIỀU CAO XUỐNG DƯỚI */
+.vsr-dash-main-container main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px !important;
+}
+
+.vsr-dash-main-container .row {
+    flex: 1;
+    margin: 0 !important;
+}
+
+.vsr-dash-main-container .col-lg-5,
+.vsr-dash-main-container .col-lg-7 {
+    display: flex;
+    flex-direction: column;
+    padding: 8px !important;
+}
+
+/* 5. KHUNG CARD BẢN ĐỒ VÀ CAMERA */
 .vsr-dash-card {
     background: rgba(15, 23, 42, 0.5);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.03);
+    flex: 1; /* Tự động kéo dài xuống sát mép dưới của cột */
     display: flex;
     flex-direction: column;
-    min-height: 520px;
+    overflow: hidden;
+    min-height: 0 !important; /* Lệnh cực kỳ quan trọng để sửa lỗi "bẹp khung" */
 }
 
-
+/* 6. KHUNG ĐEN (CONTENT BOX) */
 .vsr-dash-content-box {
-    flex-grow: 1;
+    flex: 1;
     background: #000;
     position: relative;
     overflow: hidden;
+    min-height: 0 !important;
 }
 
-.vsr-dash-media {
-    width: 100%;
-    height: 100%;
+/* 7. BẢN ĐỒ VÀ CAMERA BÊN TRONG (Ép bung kín khung đen) */
+.vsr-dash-content-box > div[id],
+.vsr-dash-content-box video {
+    position: absolute !important;
+    top: 0; left: 0;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover;
-    opacity: 0.85;
 }
 
-
+/* =========================================================
+   CÁC THÀNH PHẦN TRANG TRÍ (GIỮ NGUYÊN)
+   ========================================================= */
 .vsr-dash-header { background: rgba(30, 41, 59, 0.5); }
 .vsr-dash-card-label { background: rgba(30, 41, 59, 0.8); color: #94a3b8; font-size: 11px; font-weight: bold; }
-
-
 .vsr-dash-ai-target {
-    position: absolute;
-    border: 2px solid #38bdf8;
-    background: rgba(56, 189, 248, 0.05);
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-    z-index: 5;
+    position: absolute; border: 2px solid #38bdf8; background: rgba(56, 189, 248, 0.05);
+    border-radius: 10px; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); z-index: 5;
 }
-
 .ai-label {
-    position: absolute;
-    top: -25px; left: -2px;
-    background: #38bdf8; color: #000;
-    padding: 2px 8px; font-size: 10px; font-weight: 800;
-    border-radius: 4px 4px 0 0;
+    position: absolute; top: -25px; left: -2px; background: #38bdf8; color: #000;
+    padding: 2px 8px; font-size: 10px; font-weight: 800; border-radius: 4px 4px 0 0;
 }
-
 .speed-val { font-size: 2.5rem; font-weight: 900; color: #38bdf8; }
-
-
 .vsr-dash-pulse {
-    width: 10px; height: 10px; background: #38bdf8;
-    border-radius: 50%; box-shadow: 0 0 10px #38bdf8;
-    animation: dash-blink 2s infinite;
+    width: 10px; height: 10px; background: #38bdf8; border-radius: 50%;
+    box-shadow: 0 0 10px #38bdf8; animation: dash-blink 2s infinite;
 }
-
 @keyframes dash-blink { 50% { opacity: 0.3; } }
-
-
-
-
-
 
 
 

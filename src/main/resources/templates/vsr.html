@@ -135,10 +135,13 @@
                             <span><i class="fa-solid fa-camera me-2"></i>GIÁM SÁT AI</span>
                             <span class="small text-info">30.0 FPS</span>
                         </div>
-                        <div class="vsr-dash-content-box position-relative"
-                             style="width:640px; height:480px;">
-                            <img src="http://localhost:5000/video_feed" style="width:100%; height:100%; object-fit:cover;" />
-                            <img id="signImg" style="position:absolute; top:20px; right:20px; width:120px; background:white; padding:5px; border-radius:10px;" />
+
+                        <div class="vsr-dash-content-box position-relative" style="height: 600px; background: #000;">
+                            <div id="map" style="width: 100%; height: 100%;"></div>
+
+                            <div class="vsr-dash-ai-target position-absolute" style="top: 25%; right: 20%; width: 100px; height: 100px;">
+                                <div class="ai-label text-white fw-bold">BIỂN CẤM</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -176,27 +179,116 @@
             iconAnchor: [15, 15]
         });
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    const signImg = document.getElementById("signImg");
+        vehicleMarker = L.marker(currentPos, { icon: navIcon }).addTo(map);
 
-    setInterval(() => {
-        fetch("/api/current-sign")   // sửa ở đây
-            .then(res => {
-                if (!res.ok) throw new Error("Network error");
-                return res.text();
-            })
-            .then(text => {
-                if (!text) return null;
-                return JSON.parse(text);
-            })
-            .then(data => {
-                if (!data || !data.image) return;
+        setupNavigationEvents();
+        setupRecenterLogic();
+        startGPS();
+    }
 
-                signImg.src = data.image;
-            })
-            .catch(err => console.log("No sign detected yet"));
-    }, 1000);
+    function setupRecenterLogic() {
+        const recenterBtn = document.getElementById('recenter-btn');
+
+        // Khi kéo bản đồ, ngừng bám xe và hiện nút quay lại
+        map.on('dragstart', () => {
+            autoCenter = false;
+            recenterBtn.style.display = 'block';
+        });
+
+        recenterBtn.onclick = () => {
+            autoCenter = true;
+            recenterBtn.style.display = 'none';
+            map.flyTo(currentPos, isNavigating ? 18 : 16, { animate: true });
+        };
+    }
+
+    function setupNavigationEvents() {
+        const input = document.getElementById('dest-input');
+        const startBtn = document.getElementById('start-nav');
+
+        // Tìm kiếm địa điểm
+        input.addEventListener('input', function () {
+            if (this.value.length > 2) {
+                fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(this.value)}&limit=3&countrycodes=vn`)
+                    .then(res => res.json()).then(data => {
+                    const suggestBox = document.getElementById('suggest-box');
+                    suggestBox.innerHTML = '';
+                    data.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'list-group-item list-group-item-action border-0 py-3';
+                        div.innerText = item.display_name;
+                        div.onclick = () => {
+                            input.value = item.display_name;
+                            suggestBox.innerHTML = '';
+                            drawRealRoute(item.lat, item.lon);
+                        };
+                        suggestBox.appendChild(div);
+                    });
+                });
+            }
+        });
+
+        // Nút Bắt đầu dẫn đường
+        startBtn.onclick = () => {
+            isNavigating = true;
+            autoCenter = true;
+            document.getElementById('search-box-ui').style.display = 'none';
+            document.getElementById('nav-instruction').style.display = 'block';
+            startBtn.style.display = 'none';
+            map.flyTo(currentPos, 18, { animate: true, duration: 2 });
+            if (routeLine) routeLine.setStyle({ weight: 12, color: '#4285F4', opacity: 1 });
+        };
+    }
+
+    function drawRealRoute(destLat, destLon) {
+        if (routeLine) map.removeLayer(routeLine);
+        if (destinationMarker) map.removeLayer(destinationMarker);
+
+        destinationMarker = L.marker([destLat, destLon]).addTo(map);
+
+        const url = `https://router.project-osrm.org/route/v1/driving/${currentPos[1]},${currentPos[0]};${destLon},${destLat}?overview=full&geometries=geojson`;
+
+        fetch(url).then(res => res.json()).then(data => {
+            if (data.routes && data.routes.length > 0) {
+                const route = data.routes[0];
+                const coords = route.geometry.coordinates.map(c => [c[1], c[0]]);
+
+                routeLine = L.polyline(coords, { color: '#4285F4', weight: 8, opacity: 0.7, lineJoin: 'round' }).addTo(map);
+
+                document.getElementById('dist-left').innerText = (route.distance / 1000).toFixed(1);
+                document.getElementById('time-left').innerText = Math.round(route.duration / 60) + " phút";
+                document.getElementById('trip-stats').style.display = 'block';
+
+                map.fitBounds(routeLine.getBounds(), { padding: [60, 100] });
+            }
+        });
+    }
+
+    function startGPS() {
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition((pos) => {
+                const { latitude, longitude, heading } = pos.coords;
+                currentPos = [latitude, longitude];
+
+                vehicleMarker.setLatLng(currentPos);
+
+                // Xoay mũi tên theo hướng GPS (Heading)
+                if (heading !== null) {
+                    const arrowLine = document.getElementById('vehicle-arrow');
+                    if (arrowLine) {
+                        // Trừ 45 độ vì icon font-awesome gốc nằm nghiêng
+                        arrowLine.style.transform = `rotate(${heading - 45}deg)`;
+                    }
+                }
+
+                if (autoCenter) {
+                    map.panTo(currentPos);
+                }
+            }, null, { enableHighAccuracy: true });
+        }
+    }
+
+    window.onload = initMap;
 </script>
 </body>
 

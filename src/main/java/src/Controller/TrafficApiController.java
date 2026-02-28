@@ -25,7 +25,7 @@ public class TrafficApiController {
         TrafficSign sign = trafficSignService.getLatest();
 
         if (sign == null) {
-            return ResponseEntity.ok().body("Cannot receive signId from flask");
+            return ResponseEntity.ok().build();
         }
 
         return ResponseEntity.ok(sign);

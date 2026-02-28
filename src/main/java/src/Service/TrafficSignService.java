@@ -38,6 +38,8 @@ public class TrafficSignService {
 }
 
     public TrafficSign getLatest() {
-        return latestSign;
+        TrafficSign temp = latestSign;
+        latestSign = null;
+        return temp;
     }
 }

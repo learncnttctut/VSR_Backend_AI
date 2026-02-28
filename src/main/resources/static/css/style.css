@@ -859,10 +859,11 @@ body.auth-screen {
 }
 
 /* 7. BẢN ĐỒ VÀ CAMERA BÊN TRONG (Ép bung kín khung đen) */
-.vsr-dash-content-box > div[id],
+.vsr-dash-content-box > div[id="leaflet-map"],
 .vsr-dash-content-box video {
     position: absolute !important;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
